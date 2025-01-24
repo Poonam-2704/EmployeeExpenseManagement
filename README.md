@@ -60,7 +60,28 @@ Start the application:
 npm start 
 
 Screenshots
-![image](https://github.com/user-attachments/assets/ba91893e-82fa-46a7-8304-6a5d283c07b3)
+Home Page
+![Screenshot 2025-01-24 193620](https://github.com/user-attachments/assets/710e74db-b834-4c57-a971-dc9bb2c2a903)
+
+![Screenshot 2025-01-24 193620](https://github.com/user-attachments/assets/25e340e1-72e5-47fc-8d8c-e61f7f95561e)
+
+![Screenshot 2025-01-24 193620](https://github.com/user-attachments/assets/5f1938c0-b242-41ee-8435-2ee78523cbe3)
+
+Voucher Entry
+![Screenshot 2025-01-24 193620](https://github.com/user-attachments/assets/90d8a5b5-1311-46b6-8515-90d139cb9f9b)
+
+Case Management
+![Screenshot 2025-01-24 193724](https://github.com/user-attachments/assets/6230b407-0e00-4bea-bdc8-32252cb4f2a5)
+
+Draft Voucher
+![Screenshot 2025-01-24 193735](https://github.com/user-attachments/assets/0b4685c8-ec15-4d46-96c4-930c3d28734d)
+
+Rejection Flow
+![Screenshot 2025-01-24 193755](https://github.com/user-attachments/assets/7f98a055-9125-4265-9768-771e1dcf7a2c)
+
+Account View/Profile
+![Screenshot 2025-01-24 193818](https://github.com/user-attachments/assets/656e669d-fa90-41e6-b0b8-ec9396a3e45a)
+
 
 
 Contributing
