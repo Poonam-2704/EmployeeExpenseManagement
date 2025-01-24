@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            color: #333;
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px 50px;
+            max-width: 500px;
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .login-card:hover {
+            transform: scale(1.02);
+        }
+        body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #A8E6CF, #FFABAB); /* Mint Breeze Gradient */
+    color: #333333; /* Dark Gray text */
+}
+
+.login-card {
+    background-color: rgba(255, 255, 255, 0.85); /* Light transparent white */
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px 50px;
+    max-width: 500px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.login-btn {
+    background-color: #FFABAB; /* Soft Peach */
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #FF8C8C; /* Darker Peach */
+}
+
+.social-login a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    margin: 0 12px;
+    padding: 12px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.social-login .google {
+    background-color: #db4437; /* Google Red */
+}
+
+.social-login .facebook {
+    background-color: #3b5998; /* Facebook Blue */
+}
+
+.signup-link a {
+    color: #FFABAB; /* Soft Peach */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+
+        .login-card h2 {
+            font-size: 2.5rem;
+            color: #ff7e5f;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 25px;
+            padding: 12px 20px;
+            border: 1px solid #ff7e5f;
+            font-size: 1.1rem;
+            color: #555;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 8px rgba(255, 168, 131, 0.6);
+        }
+
+        .login-btn {
+            background-color: #ef7e5f;
+            color: white;
+            font-weight: bold;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #d85a4b;
+        }
+        .social-login {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .social-login a {
+            text-decoration: none;
+            font-size: 20px;
+            color: #fff;
+            margin: 0 12px;
+            padding: 12px;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-login a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-login .gmail {
+            background-color: #db4437;
+        }
+
+        .social-login .facebook {
+            background-color: #3b5998;
+        }
+
+        .social-login .guest {
+            background-color: #fda085;
+            margin-top: 20px;
+            border-radius: 25px;
+        }
+
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .signup-link a {
+            color: #ff7e5f;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Styling */
+        .modal-content {
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <div class="social-login">
+                <p>Or log in with:</p>
+                <a href="https://www.gmail.com" target="_blank" class="gmail"><i class="fab fa-gmail"></i></a>
+                <a href="https://www.facebook.com" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="social-login">
+                <a href="Home.html" class="guest btn btn-outline-primary guest">Continue as Guest</a>
+            </div>
+            <div class="signup-link">
+                <p>Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Sign Up -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Create Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm">
+                        <div class="form-group mb-3">
+                            <label for="newUsername">Username</label>
+                            <input type="text" id="newUsername" class="form-control" placeholder="Enter your username" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="newEmail">Email</label>
+                            <input type="email" id="newEmail" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="newPassword">Password</label>
+                            <input type="password" id="newPassword" class="form-control" placeholder="Create a password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            alert('Login Successful!');
+            window.location.href = 'Home.html'; // Redirect to Home page
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const newUsername = document.getElementById('newUsername').value;
+            const newEmail = document.getElementById('newEmail').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            if (!newUsername || !newEmail || !newPassword) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            alert('Account Created Successfully!');
+            window.location.href = 'Home.html'; // Redirect to Home page after successful sign up
+        });
+    </script>
+</body>
+</html>
