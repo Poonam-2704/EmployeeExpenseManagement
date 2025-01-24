@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Expense Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="Home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="voucher_entry.html">Voucher Entry</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cashmanagement.html">Case Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="draft_voucher.html">Draft Voucher</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rejectionflow.html">Rejection Flow</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.html" onclick="logout()">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br><br>
+    <div class="container-custom">
+        <h2 class="text-center">MANAGE VOUCHERS</h2>
+        <br>
+        <img src="cash3.png" alt="Cash Management Banner" class="banner-image">
+        <br>
+        
+        
+        <div class="d-flex justify-content-end mb-3 button-group">
+            <input type="text" id="filterName" class="form-control w-auto" placeholder="Filter by Name">
+            <button class="btn btn-primary" onclick="applyFilter()">Apply Filter</button>
+            <button class="btn btn-danger" onclick="removeFilter()">Remove Filter</button>
+            <button class="btn btn-secondary" onclick="exportToExcel()">Export to Excel</button>
+        </div>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Voucher Number</th>
+                    <th>Employee Name</th>
+                    <th>Date</th>
+                    <th>Expense Type</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="voucherTable">
+                <!-- Dynamic Rows -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Render the table with dynamic data
+        function renderTable(vouchers) {
+            const tableBody = document.getElementById('voucherTable');
+            tableBody.innerHTML = '';
+            vouchers.forEach((voucher, index) => {
+                voucher.expenses.forEach((expense, expenseIndex) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${voucher.voucherNumber}</td>
+                        <td>${voucher.employeeName}</td>
+                        <td>${voucher.voucherDate}</td>
+                        <td>${expense.type}</td>
+                        <td>${expense.description}</td>
+                        <td>${expense.amount}</td>
+                        <td>${expense.status || 'Pending'}</td>
+                        <td>
+                            <button 
+                                class="btn btn-sm btn-success" 
+                                onclick="updateStatus(${index}, ${expenseIndex}, 'Accepted')"
+                                ${expense.status === 'Accepted' || expense.status === 'Rejected' ? 'disabled' : ''}>
+                                Accept
+                            </button>
+                            <button 
+                                class="btn btn-sm btn-danger" 
+                                onclick="updateStatus(${index}, ${expenseIndex}, 'Rejected')"
+                                ${expense.status === 'Accepted' || expense.status === 'Rejected' ? 'disabled' : ''}>
+                                Reject
+                            </button>
+                            <button 
+                                class="btn btn-sm btn-danger" 
+                                onclick="removeVoucher(${index}, ${expenseIndex})">
+                                Remove
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            });
+        }
+
+        // Update status of a voucher
+        function updateStatus(voucherIndex, expenseIndex, status) {
+            const vouchers = JSON.parse(localStorage.getItem('allVouchers')) || [];
+            const expense = vouchers[voucherIndex].expenses[expenseIndex];
+            if (expense.status !== 'Accepted' && expense.status !== 'Rejected') {
+                expense.status = status;
+                localStorage.setItem('allVouchers', JSON.stringify(vouchers));
+                renderTable(vouchers);
+            }
+        }
+
+        // Remove a voucher or an expense
+        function removeVoucher(voucherIndex, expenseIndex) {
+            const vouchers = JSON.parse(localStorage.getItem('allVouchers')) || [];
+            vouchers[voucherIndex].expenses.splice(expenseIndex, 1);
+            if (vouchers[voucherIndex].expenses.length === 0) {
+                vouchers.splice(voucherIndex, 1);
+            }
+            localStorage.setItem('allVouchers', JSON.stringify(vouchers));
+            renderTable(vouchers);
+        }
+
+        // Filter vouchers by employee name
+        function applyFilter() {
+            const filterName = document.getElementById('filterName').value.toLowerCase();
+            const vouchers = JSON.parse(localStorage.getItem('allVouchers')) || [];
+            const filteredVouchers = vouchers.filter(voucher => 
+                voucher.employeeName.toLowerCase().includes(filterName)
+            );
+            renderTable(filteredVouchers);
+        }
+
+        // Remove filter and show all vouchers
+        function removeFilter() {
+            document.getElementById('filterName').value = '';
+            const vouchers = JSON.parse(localStorage.getItem('allVouchers')) || [];
+            renderTable(vouchers);
+        }
+
+        // Export data to CSV
+        function exportToExcel() {
+            const vouchers = JSON.parse(localStorage.getItem('allVouchers')) || [];
+            const header = ['Voucher Number', 'Employee Name', 'Date', 'Expense Type', 'Description', 'Amount', 'Status'];
+            const rows = vouchers.flatMap(voucher => 
+                voucher.expenses.map(expense => [
+                    voucher.voucherNumber, 
+                    voucher.employeeName, 
+                    voucher.voucherDate, 
+                    expense.type, 
+                    expense.description, 
+                    expense.amount, 
+                    expense.status
+                ])
+            );
+            const csvContent = [
+                header.join(','), 
+                ...rows.map(row => row.join(','))
+            ].join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'vouchers.csv';
+            a.click();
+        }
+
+        // Load vouchers from local storage on page load
+        const initialVouchers = JSON.parse(localStorage.getItem('allVouchers')) || [];
+        renderTable(initialVouchers);
+    </script>
+    <footer>
+        <p>&copy; 2024 Expense Management System. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
