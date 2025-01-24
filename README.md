@@ -61,14 +61,14 @@ npm start
 
 Screenshots
 Home Page
-![Screenshot 2025-01-24 193620](https://github.com/user-attachments/assets/710e74db-b834-4c57-a971-dc9bb2c2a903)
+![Screenshot 2025-01-24 193528](https://github.com/user-attachments/assets/ddd6634e-1ed7-4fe7-8205-35e855564bf9)
 
-![Screenshot 2025-01-24 193620](https://github.com/user-attachments/assets/25e340e1-72e5-47fc-8d8c-e61f7f95561e)
+![Screenshot 2025-01-24 193558](https://github.com/user-attachments/assets/45c4d2b6-cc62-4ab1-8268-9ffcccfa57bd)
 
 ![Screenshot 2025-01-24 193620](https://github.com/user-attachments/assets/5f1938c0-b242-41ee-8435-2ee78523cbe3)
 
 Voucher Entry
-![Screenshot 2025-01-24 193620](https://github.com/user-attachments/assets/90d8a5b5-1311-46b6-8515-90d139cb9f9b)
+![Screenshot 2025-01-24 193643](https://github.com/user-attachments/assets/114d2120-b2fb-432b-af9f-9532690f700e)
 
 Case Management
 ![Screenshot 2025-01-24 193724](https://github.com/user-attachments/assets/6230b407-0e00-4bea-bdc8-32252cb4f2a5)
