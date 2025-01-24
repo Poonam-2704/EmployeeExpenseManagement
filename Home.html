@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Expense Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        .footer-separator {
+            border-top: 5px solid #007bff; /* Solid blue border above footer */
+            margin-top: 20px;
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <br><br>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Expense Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="voucher_entry.html">Voucher Entry</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cashmanagement.html">Case Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="draft_voucher.html">Draft Voucher</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="rejectionflow.html">Rejection Flow</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.html">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="text-danger-emphasis py-1">
+        <marquee behavior="scroll" direction="left">
+            <strong>!!Welcome To Employee Expense Management System!!</strong>
+        </marquee>
+    </div>
+
+    <div id="facilityCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#facilityCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#facilityCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#facilityCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="employeepic1.jpg" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="track.jpg" class="d-block w-100" alt="Slide 2">
+                
+            </div>
+            <div class="carousel-item">
+                <img src="laptop.jpg" class="d-block w-100" alt="Slide 3">
+                
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#facilityCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#facilityCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container" id="aboutUs">
+        <h3>What is Expense Management?</h3>
+        <p>Expense management refers to the process through which businesses handle and monitor the expenses incurred by employees during work-related activities. It involves tracking, approving, reimbursing, and reporting on business-related expenses, ensuring that the process is efficient, accurate, and in compliance with company policies.</p>
+    </div>
+
+    <div class="container" id="facilities">
+        <h2 class="text-center mb-4">Our Facilities</h2>
+        <p class="text-center mb-5">We provide top-notch facilities to ensure smooth and efficient management of your expenses. Our facilities are designed to meet the needs of modern businesses.</p>
+
+        <!-- Facilities Cards -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="AutomatedExpenseReporting.jpeg" class="card-img-top" alt="Facility 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Automated Expense Reporting</h5>
+                        <p class="card-text">Our platform allows employees to quickly submit their expenses for approval, eliminating manual entry and speeding up the reimbursement process. </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="Real-TimeExpenseTracking.jpeg" class="card-img-top" alt="Facility 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Real-Time Expense Tracking</h5>
+                        <p class="card-text">Track expenses in real-time and gain visibility into the cash flow. Stay on top of budget limits and make informed decisions with up-to-date data. </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="SeamlessIntegration.jpeg" class="card-img-top" alt="Facility 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Seamless Integration</h5>
+                        <p class="card-text">Our system seamlessly integrates with popular accounting software making it easy to sync financial data and streamline your processes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="mobilefriendly.png" class="card-img-top" alt="Facility 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Mobile-Friendly Interface</h5>
+                        <p class="card-text">Our mobile app lets employees capture receipts, submit expenses, and track approvals on the go. A user-friendly interface ensures that users can access the platform anytime, anywhere.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="dataanalasitic.jpeg" class="card-img-top" alt="Facility 5">
+                    <div class="card-body">
+                        <h5 class="card-title">Advanced Data Analytics</h5>
+                        <p class="card-text">Gain insights into spending patterns with our advanced analytics tools. Data-driven dashboards help businesses make informed decisions and optimize financial processes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="security.avif" class="card-img-top" alt="Facility 6">
+                    <div class="card-body">
+                        <h5 class="card-title">Secure and Compliant</h5>
+                        <p class="card-text">Our platform is built with top-notch security protocols to protect sensitive financial data. Additionally, we ensure compliance with regulatory standards and company policies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container" id="keyFeatures">
+        <h2 class="text-center mb-4">Key Features</h2>
+        <p class="text-center mb-5">Our Expense Management System offers a suite of features that help streamline financial processes, increase productivity, and reduce errors.</p>
+    
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col text-center">
+                <i class="bi bi-check-circle fs-1 text-primary mb-3"></i>
+                <h5 class="card-title">Expense Approval Workflow</h5>
+                <p class="card-text">Customize approval workflows for each department to ensure a smooth and transparent expense approval process.</p>
+            </div>
+    
+            <div class="col text-center">
+                <i class="bi bi-file-earmark-check fs-1 text-primary mb-3"></i>
+                <h5 class="card-title">Voucher Management</h5>
+                <p class="card-text">Submit, approve, and track expense vouchers with ease, ensuring compliance with company policies and accuracy.</p>
+            </div>
+    
+            <div class="col text-center">
+                <i class="bi bi-bar-chart-line fs-1 text-primary mb-3"></i>
+                <h5 class="card-title">Analytics & Reporting</h5>
+                <p class="card-text">Generate comprehensive reports and dashboards to analyze spending trends and optimize budget management.</p>
+            </div>
+        </div>
+    </div>
+<br><br><br>    
+<div class="container" id="faq">
+    <h2 class="text-center mb-4">Frequently Asked Questions (FAQ)</h2>
+
+    <!-- Accordion for FAQs -->
+    <div class="accordion" id="faqAccordion">
+
+        <!-- Existing FAQ 1 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    What is the purpose of the Employee Expense Management System?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    The Employee Expense Management System simplifies and automates the process of tracking, approving, and reimbursing employee expenses, ensuring compliance with company policies.
+                </div>
+            </div>
+        </div>
+
+        <!-- Existing FAQ 2 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    How do I submit an expense voucher?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    You can submit your expense voucher by filling out the Voucher Entry form. This will include entering the expense details, uploading receipts, and submitting it for approval.
+                </div>
+            </div>
+        </div>
+
+        <!-- New FAQ 1 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    How does the approval workflow work in the system?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    The approval workflow involves multi-level checks, where each expense voucher is reviewed by managers and finance team members before approval or rejection. Notifications are sent at each step to keep users informed.
+                </div>
+            </div>
+        </div>
+
+        <!-- New FAQ 2 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Can I track the status of my expense submission?
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes, you can track the real-time status of your expense voucher through the "Voucher Status" section of the platform. You'll be notified of any updates, including approval or rejection.
+                </div>
+            </div>
+        </div>
+
+        <!-- New FAQ 3 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Is the platform secure and compliant with regulations?
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes, the platform is built with high security standards, including data encryption and user authentication. It also adheres to compliance regulations like GDPR and other financial reporting standards.
+                </div>
+            </div>
+        </div>
+
+        <!-- New FAQ 4 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Can I integrate this system with third-party accounting software?
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes, the Employee Expense Management System can integrate seamlessly with popular accounting platforms like QuickBooks, Oracle, and Sage to streamline your accounting processes.
+                </div>
+            </div>
+        </div>
+
+        <!-- New FAQ 5 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Is there a mobile app available for expense submission and tracking?
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes, our mobile app allows employees to easily capture receipts, submit expenses, and track approvals directly from their smartphones, making the process more convenient on the go.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    
+
+    <footer class="bg-light pt-4 pb-2">
+        <!-- Footer Separator -->
+        <div class="footer-separator mb-4"></div>
+    
+        <!-- Footer Content -->
+        <div class="container text-center">
+            <p class="mb-2 text-dark">&copy; 2024 Employee Expense Management System</p>
+    
+            <!-- Integrations Section -->
+            <h3 class="text-primary mb-4">Explore Our Integrations</h3>
+    
+            <!-- Logos Row -->
+            <div class="row justify-content-center">
+                <div class="col-auto mb-3">
+                    <img src="quickbooks.svg" alt="QuickBooks" class="integration-logo">
+                </div>
+                <div class="col-auto mb-3">
+                    <img src="oracle.png" alt="Oracle" class="integration-logo">
+                </div>
+                <div class="col-auto mb-3">
+                    <img src="anz-logo-colorUpdate-small.png" alt="Xero" class="integration-logo">
+                </div>
+                <div class="col-auto mb-3">
+                    <img src="citi.svg" alt="Sage" class="integration-logo">
+                </div>
+                <div class="col-auto mb-3">
+                    <img src="chase.svg" alt="Chase" class="integration-logo">
+                </div>
+            </div>
+    
+            <!-- Optional Social Media Links -->
+            <div class="mt-4">
+                <a href="#" class="text-dark me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-dark me-3"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+    
+        <!-- Scroll to Top Button -->
+        <div class="text-center mt-4">
+            <a href="#" class="btn btn-outline-primary rounded-circle" id="scrollToTop" title="Scroll to Top">
+                <i class="bi bi-arrow-up-circle"></i>
+            </a>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap Icons (for Social Media Icons and Scroll to Top Button) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Scroll to Top Button Script -->
+    <script>
+        document.getElementById("scrollToTop").addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+    
+    <!-- Custom CSS for Footer Styling -->
+    <style>
+        .footer-separator {
+            border-top: 2px solid #007bff;
+            width: 60px;
+            margin: 0 auto;
+        }
+    
+        .integration-logo {
+            width: 100px;  /* Increased size */
+            height: 100px; /* Increased size */
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+    
+        .integration-logo:hover {
+            transform: scale(1.1);
+        }
+    
+        .btn-outline-primary {
+            background-color: white;
+            border: 2px solid #007bff;
+            font-size: 24px;
+            color: #007bff;
+        }
+    
+        .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    
+        .text-primary {
+            color: #007bff;
+        }
+    
+        .text-dark {
+            color: #343a40 !important;
+        }
+    
+      
+    </style>
+</body>
+</html>
