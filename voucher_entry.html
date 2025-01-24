@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voucher Entry</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Expense Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="Home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="voucher_entry.html">Voucher Entry</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cashmanagement.html">Case Management</a></li>
+                    <li class="nav-item"><a class="nav-link" href="draft_voucher.html">Draft Voucher</a></li>
+                    <li class="nav-item"><a class="nav-link" href="rejectionflow.html">Rejection Flow</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.html" onclick="logout()">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br> <br> <br>
+    <div class="container">
+        <div class="voucher-container">
+            <h2 class="text-center">VOUCHER ENTRY</h2>
+            <br>
+            <img src="voch.jpg" alt="Cash Management Banner" class="banner-image">
+            <form id="voucherForm">
+                <div class="mb-3">
+                    <label for="voucherNumber" class="form-label">Voucher Number</label>
+                    <input type="number" class="form-control" id="voucherNumber" placeholder="Enter voucher number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="employeeName" class="form-label">Employee Name</label>
+                    <input type="text" class="form-control" id="employeeName" placeholder="Enter employee name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="voucherDate" class="form-label">Voucher Date</label>
+                    <input type="date" class="form-control" id="voucherDate" required>
+                </div>
+                <h4>Expenses</h4>
+                <div id="expenses">
+                    <!-- The first expense row will be present initially -->
+                    <div class="mb-3 expense-row row">
+                        <div class="col-md-3">
+                            <select class="form-control expenseType" required>
+                                <option value="" disabled selected>Type</option>
+                                <option value="transport">Transport</option>
+                                <option value="food">Food</option>
+                                <option value="accommodation">Accommodation</option>
+                                <option value="miscellaneous">Miscellaneous</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control expenseDescription" placeholder="Description" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control expenseAmount" placeholder="Amount in Rs." required>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="addExpense" class="btn btn-secondary mt-2">Add Expense</button>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-success">Submit Voucher</button>
+                    <button type="button" id="saveDraft" class="btn btn-primary">Save as Draft</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Expense Management System. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const expensesContainer = document.getElementById('expenses');
+
+        // Add expense row
+        document.getElementById('addExpense').addEventListener('click', () => {
+            const expenseRow = document.createElement('div');
+            expenseRow.classList.add('mb-3', 'expense-row', 'row');
+            expenseRow.innerHTML = ` 
+                <div class="col-md-3">
+                    <select class="form-control expenseType" required>
+                        <option value="" disabled selected>Type</option>
+                        <option value="transport">Transport</option>
+                        <option value="food">Food</option>
+                        <option value="accommodation">Accommodation</option>
+                        <option value="miscellaneous">Miscellaneous</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control expenseDescription" placeholder="Description" required>
+                </div>
+                <div class="col-md-3">
+                    <input type="number" class="form-control expenseAmount" placeholder="Amount in Rs." required>
+                </div>
+            `;
+            expensesContainer.appendChild(expenseRow);
+        });
+
+        // Save Voucher (submit or save as draft)
+        document.getElementById('saveDraft').addEventListener('click', () => {
+            saveVoucher('draft');
+            alert('Voucher saved as draft.');
+        });
+
+        // Submit Voucher
+        document.getElementById('voucherForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            saveVoucher('submitted');
+            alert('Voucher submitted successfully!');
+        });
+
+        // Function to save voucher data to localStorage
+        function saveVoucher(status) {
+            const voucherNumber = document.getElementById('voucherNumber').value;
+            const employeeName = document.getElementById('employeeName').value;
+            const voucherDate = document.getElementById('voucherDate').value;
+
+            const expenses = Array.from(document.getElementsByClassName('expense-row')).map(row => ({
+                type: row.querySelector('.expenseType').value,
+                description: row.querySelector('.expenseDescription').value,
+                amount: row.querySelector('.expenseAmount').value
+            }));
+
+            const allVouchers = JSON.parse(localStorage.getItem('allVouchers')) || [];
+            const editDraftIndex = localStorage.getItem('editDraftIndex');
+
+            if (editDraftIndex !== null) {
+                allVouchers[editDraftIndex] = { voucherNumber, employeeName, voucherDate, expenses, status };
+                localStorage.removeItem('editDraftIndex'); // Clear the edit index after editing
+            } else {
+                allVouchers.push({ voucherNumber, employeeName, voucherDate, expenses, status });
+            }
+
+            localStorage.setItem('allVouchers', JSON.stringify(allVouchers));
+        }
+
+        // On page load, check if we are editing a draft voucher
+        window.onload = function() {
+            const editDraftIndex = localStorage.getItem('editDraftIndex');
+            if (editDraftIndex !== null) {
+                const allVouchers = JSON.parse(localStorage.getItem('allVouchers')) || [];
+                const voucherToEdit = allVouchers[editDraftIndex];
+
+                document.getElementById('voucherNumber').value = voucherToEdit.voucherNumber;
+                document.getElementById('employeeName').value = voucherToEdit.employeeName;
+                document.getElementById('voucherDate').value = voucherToEdit.voucherDate;
+
+                voucherToEdit.expenses.forEach(expense => {
+                    const expenseRow = document.createElement('div');
+                    expenseRow.classList.add('mb-3', 'expense-row', 'row');
+                    expenseRow.innerHTML = ` 
+                        <div class="col-md-3">
+                            <select class="form-control expenseType" required>
+                                <option value="${expense.type}" selected>${expense.type}</option>
+                                <option value="transport">Transport</option>
+                                <option value="food">Food</option>
+                                <option value="accommodation">Accommodation</option>
+                                <option value="miscellaneous">Miscellaneous</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control expenseDescription" value="${expense.description}" required>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" class="form-control expenseAmount" value="${expense.amount}" required>
+                        </div>
+                    `;
+                    expensesContainer.appendChild(expenseRow);
+                });
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
